@@ -25,7 +25,7 @@ public class AnonymizerZooApp {
         int port;
         try {
             port = Integer.parseInt(args[0]);
-            ZookeeperWatcher watcher = new ZookeeperWatcher(storageActor, port);
+            new ZookeeperWatcher(storageActor, port);
             final Http http = Http.get(system);
             final ActorMaterializer mat = ActorMaterializer.create(system);
             final Flow<HttpRequest, HttpResponse, NotUsed> flow = new CreateRoute(http, storageActor).createRoute().flow(system, mat);
