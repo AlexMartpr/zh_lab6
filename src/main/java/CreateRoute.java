@@ -33,7 +33,7 @@ public class CreateRoute {
         })).toString();
     }
 
-    private Route createRoute() {
+    public Route createRoute() {
         return route(get(() -> 
             parameter(URL_STRING, url ->
                 parameter(COUNT_STRING, count -> {
