@@ -38,18 +38,19 @@ public class CreateRoute {
                                         ,new EmptyMessage(),
                                         Duration.ofSeconds(TIMEOUT))
                                     .thenApply(serverUrl -> (String)serverUrl)
-                                        .thenCompose((serverUrl) -> this.http.singleRequest())    
+                                        .thenCompose((serverUrl) -> this.http.singleRequest(this.initUrl(serverUrl, url, Integer.parseInt(count))))    
                         );
                     }   
                 }
-            )
+            ))
         ));
     }
 
     private String initUrl(String serverUrl, String url, int count) {
         return Uri.create(serverUrl).query(Query.create(new Pair[] {
-            Pair.create(URL_STRING, url).
-        }))
+            Pair.create(URL_STRING, url),
+            Pair.create(COUNT_STRING, String.valueOf(count - 1))
+        })).toString();
     }
 
 }
