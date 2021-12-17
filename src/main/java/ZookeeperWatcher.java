@@ -10,11 +10,11 @@ public class ZookeeperWatcher implements Watcher {
     private final String CONNECET = "127.0.0.1:2181";
     private final Integer SESSION_TIMEOUT = 3000;
 
-    private final ActorRef storageActor;
+    private final ActorRef configStorageActor;
     private final ZooKeeper zoo;
     
-    public ZookeeperWatcher(ActorRef sActor) {
-        this.storageActor = sActor;
+    public ZookeeperWatcher(ActorRef sActor) throws IOException {
+        this.configStorageActor = sActor;
         this.zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, this);
     }
 
