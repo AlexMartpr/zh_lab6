@@ -46,11 +46,4 @@ public class CreateRoute {
         ));
     }
 
-    private String initUrl(String serverUrl, String url, int count) {
-        return Uri.create(serverUrl).query(Query.create(new Pair[] {
-            Pair.create(URL_STRING, url),
-            Pair.create(COUNT_STRING, String.valueOf(count - 1))
-        })).toString();
-    }
-
 }
