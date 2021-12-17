@@ -37,6 +37,8 @@ public class AnonymizerZooApp {
                 ConnectHttp.toHost(HOST, port),
                 mat);
             System.out.println("Server online at " + HOST + ":" + port + "/\nPress RETURN to stop...");
+            System.in.read();
+            binding.thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
         } catch (NumberFormatException e) {
             e.printStackTrace();
             System.exit(-1);
