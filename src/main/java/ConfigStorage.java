@@ -16,6 +16,4 @@ public class ConfigStorage extends AbstractActor {
         .build();
     }
     
-
-
 }
