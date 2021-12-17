@@ -14,7 +14,7 @@ import static akka.http.javadsl.server.Directives.*;
 public class CreateRoute {
     private final String URL_STRING = "url";
     private final String COUNT_STRING = "count";
-    private final int TIMEOUT = 5;
+    private final int TIMEOUT = 10;
 
     private final Http http;
     private final ActorRef confActor;
