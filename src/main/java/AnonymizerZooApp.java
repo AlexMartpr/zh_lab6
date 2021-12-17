@@ -35,16 +35,4 @@ public class AnonymizerZooApp {
 
     }
 
-    public Route createRouter() {
-        return route(get(() -> 
-            parameter(URL_STRING, url ->
-                parameter(COUNT_STRING, count -> {
-                    if (Integer.parseInt(count) == 0) {
-                        return completeWithFuture(http.)
-                    }   
-                }
-            )
-        ));
-    }
-
 }
