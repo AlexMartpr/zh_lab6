@@ -48,6 +48,7 @@ public class ZookeeperWatcher implements Watcher {
             servers = this.zoo.getChildren(PATH.substring(0, PATH.length() - 2), this);
             ArrayList<String> urlsOfServers = new ArrayList<>();
             for (String s : servers) {
+                System.out.println(PATH.substring(0, PATH.length()));
                 urlsOfServers.add(new String(this.zoo.getData(PATH.substring(0, PATH.length()) + s, false, null)));
             }
             this.configStorageActor.tell(new MessageServer(urlsOfServers), ActorRef.noSender());
