@@ -52,7 +52,7 @@ public class CreateRoute {
                                         ,new EmptyMessage(),
                                         Duration.ofSeconds(TIMEOUT))
                                     .thenApply(serverUrl -> (String)serverUrl)
-                                        .thenCompose((serverUrl) -> this.http.singleRequest(this.initUrl(serverUrl, url, Integer.parseInt(count))))    
+                                        .thenCompose((serverUrl) -> this.http.singleRequest(HttpRequest.create(this.initUrl(serverUrl, url, Integer.parseInt(count)))))    
                         );
                     }   
                 }
