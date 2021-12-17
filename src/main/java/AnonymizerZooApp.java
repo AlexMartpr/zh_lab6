@@ -1,8 +1,12 @@
+import org.apache.zookeeper.ZooKeeper;
+
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 
 public class AnonymizerZooApp {
+    public final String CONNECT = "127.0.0.1:2181";
+    public final Integer SESSION_TIMEOUT = 3000;
     public static void main(String[] args) {
         final ActorSystem system = ActorSystem.create("routes");
         ActorRef storageActor = system.actorOf(Props.create(ConfigStorage.class));
@@ -18,5 +22,6 @@ public class AnonymizerZooApp {
             System.exit(-1);
         }
         ZookeeperWatcher watcher = new ZookeeperWatcher();
+        ZooKeeper zoo = new ZooKeeper(CONNECT,SESS, watcher)
     }
 }
