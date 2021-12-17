@@ -12,15 +12,17 @@ public class ZookeeperWatcher implements Watcher {
 
     private final ActorRef configStorageActor;
     private final ZooKeeper zoo;
+    private int currentPort;
     
-    public ZookeeperWatcher(ActorRef sActor) throws IOException {
+    public ZookeeperWatcher(ActorRef sActor, int p) throws IOException {
         this.configStorageActor = sActor;
         this.zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, this);
+        this.currentPort = p;
         this.CreateZooServers();
     }
 
     private void CreateZooServers() {
-        
+
     }
 
 
