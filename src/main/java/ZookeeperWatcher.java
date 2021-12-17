@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
@@ -13,7 +15,12 @@ public class ZookeeperWatcher implements Watcher {
     
     public ZookeeperWatcher(ActorRef sActor) {
         this.storageActor = sActor;
-        this.zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, watcher);
+        try {
+            this.zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, this);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 
