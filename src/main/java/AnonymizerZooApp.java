@@ -20,7 +20,6 @@ public class AnonymizerZooApp {
             e.printStackTrace();
             System.exit(-1);
         }
-        //ZooKeeper zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, watcher);
 
     }
 }
