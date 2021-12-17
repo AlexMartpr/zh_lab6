@@ -27,8 +27,8 @@ public class CreateRoute {
 
 
     private String initUrl(String serverUrl, String url, int count) {
-        return Uri.create(serverUrl).query(Query.create(Pair.create(URL_STRING, url),
-                Pair.create(COUNT_STRING, String.valueOf(count - 1)))).toString();
+        return String.valueOf(Uri.create(serverUrl).query(Query.create(Pair.create(URL_STRING, url),
+                Pair.create(COUNT_STRING, String.valueOf(count - 1)))));
     }
 
     public Route createRoute() {
