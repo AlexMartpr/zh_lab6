@@ -12,8 +12,6 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
 public class AnonymizerZooApp {
-    private static final String URL_STRING = "url";
-    private static final String COUNT_STRING = "count";
     public static void main(String[] args) throws IOException {
         final ActorSystem system = ActorSystem.create("routes");
         ActorRef storageActor = system.actorOf(Props.create(ConfigStorage.class));
