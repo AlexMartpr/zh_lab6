@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import org.apache.zookeeper.ZooKeeper;
 
 import akka.actor.ActorRef;
@@ -5,9 +7,9 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 
 public class AnonymizerZooApp {
-    public final String CONNECT = "127.0.0.1:2181";
-    public final Integer SESSION_TIMEOUT = 3000;
-    public static void main(String[] args) {
+    private static final String CONNECET = "127.0.0.1:2181";
+    private static final Integer SESSION_TIMEOUT = 3000;
+    public static void main(String[] args) throws IOException {
         final ActorSystem system = ActorSystem.create("routes");
         ActorRef storageActor = system.actorOf(Props.create(ConfigStorage.class));
         if (args.length != 1) {
@@ -21,7 +23,8 @@ public class AnonymizerZooApp {
             e.printStackTrace();
             System.exit(-1);
         }
-        ZookeeperWatcher watcher = new ZookeeperWatcher();
-        ZooKeeper zoo = new ZooKeeper(CONNECT,SESS, watcher)
+        ZookeeperWatcher watcher = new ZookeeperWatcher(storageActor);
+        ZooKeeper zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, watcher);
+
     }
 }
