@@ -25,7 +25,7 @@ public class AnonymizerZooApp {
             ZookeeperWatcher watcher = new ZookeeperWatcher(storageActor, port);
             final Http http = Http.get(system);
             final ActorMaterializer mat = ActorMaterializer.create(system);
-            final Flow<HttpRequest, HttpResponse, NotUsed> flow;
+            final Flow<HttpRequest, HttpResponse, NotUsed> flow = new CreateRoute(http, storageActor).createRoute().flow(system, mat);
         } catch (NumberFormatException e) {
             e.printStackTrace();
             System.exit(-1);
