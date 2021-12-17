@@ -49,7 +49,7 @@ public class ZookeeperWatcher implements Watcher {
             ArrayList<String> urlsOfServers = new ArrayList<>();
             for (String s : servers) {
                 System.out.println(PATH.substring(0, PATH.length()));
-                urlsOfServers.add(new String(this.zoo.getData(PATH.substring(0, PATH.length()) + s, false, null)));
+                urlsOfServers.add(new String(this.zoo.getData(PATH.substring(0, PATH.length() - 1) + s, false, null)));
             }
             this.configStorageActor.tell(new MessageServer(urlsOfServers), ActorRef.noSender());
         } catch (KeeperException | InterruptedException e) {
