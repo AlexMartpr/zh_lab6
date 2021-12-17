@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
-import org.apache.zookeeper.server.quorum.ServerBean;
-
 import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
