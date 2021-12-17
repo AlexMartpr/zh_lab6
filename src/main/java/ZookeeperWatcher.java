@@ -15,12 +15,7 @@ public class ZookeeperWatcher implements Watcher {
     
     public ZookeeperWatcher(ActorRef sActor) {
         this.storageActor = sActor;
-        try {
-            this.zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, this);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        this.zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, this);
     }
 
 
