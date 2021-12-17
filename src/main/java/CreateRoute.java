@@ -24,13 +24,14 @@ public class CreateRoute {
             parameter(URL_STRING, url ->
                 parameter(COUNT_STRING, count -> {
                     if (Integer.parseInt(count) == 0) {
-                        return completeWithFuture(this.http.singleRequest(HttpRequest.create(utl)));
+                        return completeWithFuture(this.http.singleRequest(HttpRequest.create(url)));
                     } else {
                         return completeWithFuture(
                             Patterns.ask(this.confActor
                                         ,new EmptyMessage(),
                                         Duration.ofSeconds(TIMEOUT))
-                                    .thenApply(serverUrl -> (String)serverUrl)    
+                                    .thenApply(serverUrl -> (String)serverUrl)
+                                        .thenCompose(fn)    
                         );
                     }   
                 }
