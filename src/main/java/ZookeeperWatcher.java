@@ -10,6 +10,7 @@ import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
 import akka.actor.ActorRef;
+import akka.pattern.Patterns;
 
 public class ZookeeperWatcher implements Watcher {
     private final String CONNECET = "127.0.0.1:2181";
@@ -51,7 +52,7 @@ public class ZookeeperWatcher implements Watcher {
             for (String s : servers) {
                 urlsOfServers.add(new String(this.zoo.getData(PATH.substring(0, PATH.length() - 1) + s, false, null)));
             }
-            this.configStorageActor.tell(new MessageServer(urlsOfServers), ActorRef.noSender());
+            Patterns.ask(this.configStorageActor, new MessageServer(urlsOfServers), 3000);
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
             System.exit(-1);
