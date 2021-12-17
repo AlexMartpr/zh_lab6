@@ -29,6 +29,7 @@ public class ZookeeperWatcher implements Watcher {
 
     private void CreateZooServers() {
         String adress = "127.0.0.1:" + this.currentPort;
+        System.out.println(adress);
         try {
             this.zoo.create(PATH,
                             adress.getBytes(),
