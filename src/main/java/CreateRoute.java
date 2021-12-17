@@ -11,6 +11,11 @@ import akka.http.javadsl.server.Route;
 import akka.japi.Pair;
 import akka.pattern.Patterns;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+
+import static akka.http.javadsl.server.Directives.*;
+
 public class CreateRoute {
     private final String URL_STRING = "url";
     private final String COUNT_STRING = "count";
@@ -34,7 +39,8 @@ public class CreateRoute {
     }
 
     public Route createRoute() {
-        return route(get(() -> 
+        return route(
+            get(() -> 
             parameter(URL_STRING, url ->
                 parameter(COUNT_STRING, count -> {
                     if (Integer.parseInt(count) == 0) {
