@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import akka.actor.AbstractActor;
-import akka.actor.ActorRef;
 import akka.japi.pf.ReceiveBuilder;
 
 public class ConfigStorage extends AbstractActor {
@@ -12,7 +11,7 @@ public class ConfigStorage extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
         .match(MessageServer.class, msg -> this.storageServers=msg.getUrls())
-        .match(EmptyMessage.class, amsg -> sender().tell(storageServers.get(new Random().nextInt(storageServers.size())), self()))
+        .match(EmptyMessage.class, msg -> sender().tell(storageServers.get(new Random().nextInt(storageServers.size())), self()))
         .build();
     }
     
