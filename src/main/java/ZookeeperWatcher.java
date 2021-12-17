@@ -13,6 +13,7 @@ import akka.actor.ActorRef;
 
 public class ZookeeperWatcher implements Watcher {
     private final String CONNECET = "127.0.0.1:2181";
+    private final String HOST = "127.0.0.1";
     private final String PATH = "/servers/s";
     private final Integer SESSION_TIMEOUT = 3000;
 
@@ -28,7 +29,7 @@ public class ZookeeperWatcher implements Watcher {
     }
 
     private void CreateZooServers() {
-        String adress = "127.0.0.1:" + this.currentPort;
+        String adress = "http://" + HOST + ":" + this.currentPort;
         System.out.println(adress);
         try {
             this.zoo.create(PATH,
