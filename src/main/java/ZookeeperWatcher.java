@@ -45,7 +45,7 @@ public class ZookeeperWatcher implements Watcher {
     public void process(WatchedEvent event) {        
         List<String> servers;
         try {
-            servers = this.zoo.getChildren(PATH.substring(0, PATH.length() - 1), this);
+            servers = this.zoo.getChildren(PATH.substring(0, PATH.length() - 2), this);
             ArrayList<String> urlsOfServers = new ArrayList<>();
             for (String s : servers) {
                 urlsOfServers.add(new String(this.zoo.getData(PATH.substring(0, PATH.length()) + s, false, null)));
