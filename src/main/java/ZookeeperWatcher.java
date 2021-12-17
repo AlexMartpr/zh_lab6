@@ -50,7 +50,7 @@ public class ZookeeperWatcher implements Watcher {
             for (String s : servers) {
                 urlsOfServers.add(new String(this.zoo.getData(PATH.substring(0, PATH.length()) + s, false, null)));
             }
-            this.configStorageActor.tell(new MessageServer(urlsOfServers, ActorRef.noSender());
+            this.configStorageActor.tell(new MessageServer(urlsOfServers), ActorRef.noSender());
         } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
             System.exit(-1);
