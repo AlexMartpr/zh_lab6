@@ -1,7 +1,5 @@
 import java.io.IOException;
 
-import org.apache.zookeeper.ZooKeeper;
-
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -17,11 +15,11 @@ public class AnonymizerZooApp {
         int port;
         try {
             port = Integer.parseInt(args[0]);
+            ZookeeperWatcher watcher = new ZookeeperWatcher(storageActor, port);
         } catch (NumberFormatException e) {
             e.printStackTrace();
             System.exit(-1);
         }
-        ZookeeperWatcher watcher = new ZookeeperWatcher(storageActor);
         //ZooKeeper zoo = new ZooKeeper(CONNECET, SESSION_TIMEOUT, watcher);
 
     }
